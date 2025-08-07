@@ -5,11 +5,11 @@ import {useRouter} from "next/navigation";
 
 export default function Home() {
  const router =  useRouter()
-const [email, setEmail] = useState<String | any> ()
-const [password, setPassword] = useState<String | any> ()
+const [email, setEmail] = useState<string> ()
+const [password, setPassword] = useState<string> ()
 const [incorrect, setIncorrect] = useState<boolean> (false)
-function handleSubmit (e : any) {
-  e.preventDefault(e)
+function handleSubmit (e : React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>) {
+  e.preventDefault()
   if (email === "sumiclean@gmail.com" && password === "Sumidouro2025") {
     router.push("/home")
   } else {

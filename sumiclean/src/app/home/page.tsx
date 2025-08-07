@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "./page.module.css";
 import img1 from "../../../public/img1.png";
 import img2 from "../../../public/img2.png";
@@ -24,9 +25,9 @@ const imagesThree = [
 const Home: React.FC = () => {
   const [selectedTwo, setSelectedTwo] = useState<TwoOptions>(null);
   const [selectedThree, setSelectedThree] = useState<ThreeOptions>(null);
-  const [date, setDate] = useState("");
-  const [hour, setHour] = useState("");
-  const [address, setAddress] = useState("");
+  const [date, setDate] = useState<string>("");
+  const [hour, setHour] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
 
   const handleSubmit = async () => {
     if (
@@ -59,7 +60,7 @@ const Home: React.FC = () => {
       } else {
         alert("Erro ao enviar agendamento.");
       }
-    } catch (error) {
+    } catch {
       alert("Erro de conexão com o servidor.");
     }
   };
@@ -74,7 +75,13 @@ const Home: React.FC = () => {
               key={idx}
               className={`${styles.checkboxContainer} ${selectedTwo === idx + 1 ? styles.checked : ""}`}
             >
-              <img src={img} alt={`Opção ${idx + 1}`} className={styles.checkboxImage} />
+              <Image
+                src={img}
+                alt={`Opção ${idx + 1}`}
+                className={styles.checkboxImage}
+                width={200}
+                height={200}
+              />
               <input
                 type="checkbox"
                 className={styles.customCheckbox}
@@ -91,7 +98,13 @@ const Home: React.FC = () => {
               key={idx}
               className={`${styles.checkboxContainer} ${selectedThree === idx + 1 ? styles.checked : ""}`}
             >
-              <img src={img} alt={`Opção ${String.fromCharCode(65 + idx)}`} className={styles.checkboxImage} />
+              <Image
+                src={img}
+                alt={`Opção ${String.fromCharCode(65 + idx)}`}
+                className={styles.checkboxImage}
+                width={200}
+                height={200}
+              />
               <input
                 type="checkbox"
                 className={styles.customCheckbox}
@@ -121,8 +134,8 @@ const Home: React.FC = () => {
           />
           <input
             type="text"
-            name="addres"
-            id="addres"
+            name="address"
+            id="address"
             placeholder="Endereço"
             value={address}
             onChange={e => setAddress(e.target.value)}
