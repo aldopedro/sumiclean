@@ -10,6 +10,19 @@ type Agendamento = {
   address: string;
 };
 
+function getServiceLabel(service: number) {
+  if (service === 1) return "Limpeza padrão";
+  if (service === 2) return "Limpeza pesada";
+  return "Desconhecido";
+}
+
+function getLocationLabel(location: number) {
+  if (location === 1) return "Casa/Apartamento";
+  if (location === 2) return "Empresa/Loja";
+  if (location === 3) return "Prédio (Área comum)";
+  return "Desconhecido";
+}
+
 export default function Consult() {
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -40,7 +53,7 @@ export default function Consult() {
         <ul>
           {agendamentos.map(a => (
             <li key={a.id}>
-              <strong>Serviço:</strong> {a.service} | <strong>Local:</strong> {a.location} | <strong>Data:</strong> {a.date} | <strong>Hora:</strong> {a.hour} | <strong>Endereço:</strong> {a.address}
+              <strong>Serviço:</strong> {getServiceLabel(a.service)} | <strong>Local:</strong> {getLocationLabel(a.location)} | <strong>Data:</strong> {a.date} | <strong>Hora:</strong> {a.hour} | <strong>Endereço:</strong> {a.address}
             </li>
           ))}
         </ul>
