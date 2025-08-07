@@ -121,18 +121,17 @@ const Home: React.FC = () => {
         <div className={styles.mainSchedule}>
           <h1>Detalhes de Agendamento</h1>
           <input className={styles.formInput}
-            type="text"
+            type="date"
             name="date"
             id="date"
-            placeholder="Data (DD/MM/AAAA)"
             value={date}
             onChange={e => setDate(e.target.value)}
           />
           <input className={styles.formInput}
-            type="text"
+            type="time"
             name="hour"
             id="hour"
-            placeholder="Hora (HH:MM)"
+            min="09:00" max="17:00"
             value={hour}
             onChange={e => setHour(e.target.value)}
           />

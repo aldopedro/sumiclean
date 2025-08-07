@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
-
+import styles from "./consult.module.css";
 type Agendamento = {
   id: number;
   service: number;
@@ -26,7 +26,9 @@ function getLocationLabel(location: number) {
 export default function Consult() {
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
+  function handleBack() {
+    window.location.href = '/home';
+  }
   useEffect(() => {
     const fetchAgendamentos = async () => {
       try {
@@ -43,17 +45,24 @@ export default function Consult() {
   }, []);
 
   return (
-    <div>
-      <h1>Consultar Agendamentos</h1>
+    <div className={styles.master}>
+      <div className={styles.header}>
+      <h1 className={styles.title}>Consultar Agendamentos</h1>
+      <button className={styles.back} onClick={handleBack}>Voltar</button>
+      </div>
       {loading ? (
         <p>Carregando...</p>
       ) : agendamentos.length === 0 ? (
         <p>Nenhum agendamento encontrado.</p>
       ) : (
-        <ul>
+        <ul className={styles.main}>
           {agendamentos.map(a => (
-            <li key={a.id}>
-              <strong>Serviço:</strong> {getServiceLabel(a.service)} | <strong>Local:</strong> {getLocationLabel(a.location)} | <strong>Data:</strong> {a.date} | <strong>Hora:</strong> {a.hour} | <strong>Endereço:</strong> {a.address}
+            <li key={a.id} className={styles.mainInfo}>
+              <strong>Serviço: {getServiceLabel(a.service)} </strong>
+              <strong>Local: {getLocationLabel(a.location)}</strong>
+              <strong>Data:  {a.date}</strong>
+              <strong>Hora:  {a.hour}</strong>
+              <strong>Endereço:  {a.address}</strong>
             </li>
           ))}
         </ul>

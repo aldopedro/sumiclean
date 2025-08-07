@@ -1,0 +1,47 @@
+.master {
+    background-color: #cafdfe;
+    color: #033f5c;
+    height: 100vh;
+    padding-top: 24px;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+.back {
+    cursor: pointer;
+    border:none;
+    background-color: transparent;
+    flex: 1 1 300px;
+    text-align: center;
+    font-size: 32px;
+    color: #033f5c;
+}
+.title {
+    flex: 1 1 1920px;
+    text-align: center;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.mainInfo {
+    display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid #033f5c;
+  border-radius: 10px;
+  width: auto;
+  text-align: center;
+  flex: 1 1 300px;
+  max-width: 700px;
+  gap: 10px;
+  margin: 10px;
+  padding: 10px;
+}

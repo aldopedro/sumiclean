@@ -1,8 +1,10 @@
-require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { Pool } = require('pg');
+import dotenv from 'dotenv';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import { Pool } from 'pg';
+
+dotenv.config();
 
 const app = express();
 const PORT = 3001;
@@ -55,5 +57,4 @@ app.get('/getAgendamento', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
+  console.log(`Servidor rodando em http://localhost:${PORT}
