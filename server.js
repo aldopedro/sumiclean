@@ -17,7 +17,7 @@ const pool = new Pool({
   },
 });
 
-app.post('/api/agendamento', async (req, res) => {
+app.post(`https://sumiclean-q7p6.onrender.com/api/agendamento`, async (req, res) => {
   const { service, location, date, hour, address } = req.body;
 
   if (!service || !location || !date || !hour || !address) {

@@ -50,7 +50,7 @@ const Home: React.FC = () => {
     };
 
     try {
-      const response = await fetch("/api/agendamento", {
+      const response = await fetch("https://sumiclean-q7p6.onrender.com/api/agendamento", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
