@@ -39,6 +39,7 @@
   padding: 14px 12px;
   margin: 4px 0;
   width: 100%;
+  background-color: white;
 }
 .formIncorrect {
   border: 1px solid red;
@@ -57,6 +58,7 @@
 }
 
 .formForget {
+  color: black;
   cursor: pointer;
   align-self: end;
   margin: 10px 0;
@@ -104,9 +106,6 @@
     background-image: url("../../public/SemtítuloMobile.png");
     width: 100vw;
     height: 100vh;
-  }
-  .mainForm {
-    height: auto;
   }
   
   .formTitle {

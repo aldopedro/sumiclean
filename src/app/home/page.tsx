@@ -120,33 +120,43 @@ const Home: React.FC = () => {
         </div>
         <div className={styles.mainSchedule}>
           <h1>Detalhes de Agendamento</h1>
-          <input className={styles.formInput}
-            type="date"
-            name="date"
-            placeholder="Data"
-            id="date"
-            value={date}
-            onChange={e => setDate(e.target.value)}
-          />
-          <input className={styles.formInput}
-            type="time"
-            name="hour"
-            placeholder="Hora"
-            id="hour"
-            min="09:00"
-            max="17:00"
-            value={hour}
-            onChange={e => setHour(e.target.value)}
-          />
+          <div className={styles.mainForm}>
+            <label htmlFor="date" className={styles.placeholder}>Escolha a data</label>
+            <input className={styles.formInput}
+              type="date"
+              name="date"
+              placeholder="Data"
+              id="date"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
+
+          </div>
+          <div className={styles.mainForm}>
+            <label htmlFor="hour" className={styles.placeholder}>Escolha a hora</label>
+            <input className={styles.formInput}
+              type="time"
+              name="hour"
+              placeholder="Hora"
+              id="hour"
+              min="09:00"
+              max="17:00"
+              value={hour}
+
+              onChange={e => setHour(e.target.value)}
+            />
+          </div>
+          <div className={styles.mainForm}>
+          <label htmlFor="address">Informe o endereço</label>
           <input className={styles.formInput}
             type="text"
             name="address"
             id="address"
-            placeholder="Endereço completo"
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
-          <button type="button"  className={styles.endButton} onClick={handleSubmit}>
+          </div>
+          <button type="button" className={styles.endButton} onClick={handleSubmit}>
             Agendar
           </button>
           <button className={styles.consult} onClick={handleConsult}>Consultar Agendamentos</button>
