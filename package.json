@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
+  
   "dependencies": {
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
@@ -36,7 +37,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/aldopedro/sumiclean/issues"
   },

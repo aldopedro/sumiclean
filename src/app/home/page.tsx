@@ -29,6 +29,10 @@ const Home: React.FC = () => {
   const [hour, setHour] = useState<string>("");
   const [address, setAddress] = useState<string>("");
 
+  const handleConsult = () => {
+    window.location.href = '/consultar-agendamentos';
+  };
+
   const handleSubmit = async () => {
     if (
       !selectedTwo ||
@@ -67,7 +71,7 @@ const Home: React.FC = () => {
 
   return (
     <div className={styles.main}>
-      <div>
+      <div className={styles.container}>
         <h1>Qual serviço você deseja?</h1>
         <div>
           {imagesTwo.map((img, idx) => (
@@ -79,8 +83,8 @@ const Home: React.FC = () => {
                 src={img}
                 alt={`Opção ${idx + 1}`}
                 className={styles.checkboxImage}
-                width={200}
-                height={200}
+                width={166}
+                height={218}
               />
               <input
                 type="checkbox"
@@ -102,8 +106,8 @@ const Home: React.FC = () => {
                 src={img}
                 alt={`Opção ${String.fromCharCode(65 + idx)}`}
                 className={styles.checkboxImage}
-                width={200}
-                height={200}
+                width={114}
+                height={120}
               />
               <input
                 type="checkbox"
@@ -116,33 +120,34 @@ const Home: React.FC = () => {
         </div>
         <div className={styles.mainSchedule}>
           <h1>Detalhes de Agendamento</h1>
-          <input
+          <input className={styles.formInput}
             type="text"
             name="date"
             id="date"
-            placeholder="Data da faxina"
+            placeholder="Data (DD/MM/AAAA)"
             value={date}
             onChange={e => setDate(e.target.value)}
           />
-          <input
+          <input className={styles.formInput}
             type="text"
             name="hour"
             id="hour"
-            placeholder="Hora desejada"
+            placeholder="Hora (HH:MM)"
             value={hour}
             onChange={e => setHour(e.target.value)}
           />
-          <input
+          <input className={styles.formInput}
             type="text"
             name="address"
             id="address"
-            placeholder="Endereço"
+            placeholder="Endereço completo"
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
-          <button type="button" onClick={handleSubmit}>
+          <button type="button"  className={styles.endButton} onClick={handleSubmit}>
             Agendar
           </button>
+          <button className={styles.consult} onClick={handleConsult}>Consultar Agendamentos</button>
         </div>
       </div>
     </div>

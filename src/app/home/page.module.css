@@ -5,6 +5,11 @@
     background-color: #cafdfe;
     height: 100vh;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .checkboxContainer {
   position: relative;
   display: inline-block;
@@ -42,3 +47,44 @@
   margin-top: 24px;
 }
 
+.formInput {
+  border: 1px solid #e3f0f4;
+  font-size: 24px;
+  color: #033f5c;
+  border-radius: 6px;
+  padding: 14px 12px;
+  margin: 4px 0;
+  width: 100%;
+}
+.formInput::placeholder {
+  color: #033f5c;
+}
+.formInput:focus {
+  outline: 2px solid #033f5c;
+}
+
+.endButton{
+  background-color: #019d9c;
+  color: white;
+  border-radius: 14px;
+  font-size: 20px;
+  border: 1px solid #127e7b;
+  width: 100%;
+  padding: 8px 0;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.endButton:hover {
+  background-color: #127e7b;
+  transition: .2s ease-in-out;
+}
+
+.consult {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #033f5c;
+    margin-top: 16px;
+}
