@@ -45,3 +45,10 @@
   margin: 10px;
   padding: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .master {
+      height: auto;
+    }
+  
+}

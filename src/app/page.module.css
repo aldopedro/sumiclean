@@ -98,3 +98,33 @@
   transition: .2s ease-in-out;
   opacity: 70%;
 }
+
+@media screen and (max-width: 768px) {
+  .background {
+    background-image: url("../../public/SemtítuloMobile.png");
+    width: 100vw;
+    height: 100vh;
+  }
+  .mainForm {
+    height: auto;
+  }
+  
+  .formTitle {
+    font-size: 40px;
+    margin-top: 20px;
+  }
+
+  .formEmail, 
+  .formPassword, 
+  .formIncorrect {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  .formSignin, 
+  .formNewUser {
+    font-size: 24px;
+    padding: 6px 0;
+  }
+  
+}
