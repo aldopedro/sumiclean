@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 
 // POST para criar agendamento
-app.post('https://sumiclean-q7p6.onrender.com/api/agendamento', async (req, res) => {
+app.post('/api/agendamento', async (req, res) => {
   const { service, location, date, hour, address } = req.body;
 
   if (!service || !location || !date || !hour || !address) {
@@ -38,7 +38,7 @@ app.post('https://sumiclean-q7p6.onrender.com/api/agendamento', async (req, res)
 });
 
 // GET para consultar agendamentos
-app.get('https://sumiclean-q7p6.onrender.com/getAgendamento', async (req, res) => {
+app.get('/getAgendamento', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM agendamentos ORDER BY id DESC');
     return res.status(200).json(result.rows);
