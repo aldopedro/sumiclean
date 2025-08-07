@@ -1,0 +1,100 @@
+.main {
+  position: relative;
+}
+
+.background {
+  background-image: url("../../public/Semtítulo.png");
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+}
+
+.mainForm, .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.mainForm {
+  height: 100vh;
+}
+
+.formTitle {
+  font-size: 60px;
+  color: #033f5c;
+  margin-bottom: 24px;
+}
+
+
+.formEmail,
+.formPassword,
+.formIncorrect {
+  border: 1px solid #e3f0f4;
+  font-size: 24px;
+  color: #033f5c;
+  border-radius: 4px;
+  padding: 14px 12px;
+  margin: 4px 0;
+  width: 100%;
+}
+.formIncorrect {
+  border: 1px solid red;
+}
+.formIncorrect:focus {
+  outline: none;
+}
+.formEmail::placeholder,
+.formPassword::placeholder,
+.formIncorrect::placeholder {
+  color: #033f5c;
+}
+.formEmail:focus, 
+.formPassword:focus {
+  outline: 2px solid #033f5c;
+}
+
+.formForget {
+  cursor: pointer;
+  align-self: end;
+  margin: 10px 0;
+}
+
+.formForget:hover {
+  opacity: 70%;
+}
+
+.formSignin{
+  background-color: #019d9c;
+  color: white;
+  border-radius: 14px;
+  font-size: 40px;
+  border: 1px solid #127e7b;
+  width: 100%;
+  padding: 8px 0;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.formSignin:hover {
+  background-color: #127e7b;
+  transition: .2s ease-in-out;
+}
+
+.formNewUser{
+  font-size: 40px;
+  color: #033f5c;
+  background-color: white;
+  border: 1px solid #e3f0f4;
+  width: 100%;
+  border-radius: 14px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.formNewUser:hover {
+  transition: .2s ease-in-out;
+  opacity: 70%;
+}
