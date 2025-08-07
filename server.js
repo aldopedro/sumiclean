@@ -6,7 +6,13 @@ const { Pool } = require('pg');
 
 const app = express();
 const PORT = 3001;
+const corsOptions = {
+  origin: 'https://sumiclean.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+};
 
+app.use(cors(corsOptions));
 app.use(cors());
 app.use(bodyParser.json());
 
