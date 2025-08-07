@@ -24,6 +24,10 @@ function getLocationLabel(location: number) {
 }
 
 export default function Consult() {
+  function formatarData(iso: string) {
+  const [ano, mes, dia] = iso.split('-');
+  return `${dia}/${mes}/${ano}`;
+}
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   function handleBack() {
@@ -60,7 +64,7 @@ export default function Consult() {
             <li key={a.id} className={styles.mainInfo}>
               <strong>Serviço: {getServiceLabel(a.service)} </strong>
               <strong>Local: {getLocationLabel(a.location)}</strong>
-              <strong>Data:  {a.date}</strong>
+              <strong>Data:  {formatarData(a.date)}</strong>
               <strong>Hora:  {a.hour}</strong>
               <strong>Endereço:  {a.address}</strong>
             </li>
