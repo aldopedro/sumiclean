@@ -123,6 +123,7 @@ const Home: React.FC = () => {
           <input className={styles.formInput}
             type="date"
             name="date"
+            placeholder="Data"
             id="date"
             value={date}
             onChange={e => setDate(e.target.value)}
@@ -130,8 +131,10 @@ const Home: React.FC = () => {
           <input className={styles.formInput}
             type="time"
             name="hour"
+            placeholder="Hora"
             id="hour"
-            min="09:00" max="17:00"
+            min="09:00"
+            max="17:00"
             value={hour}
             onChange={e => setHour(e.target.value)}
           />
