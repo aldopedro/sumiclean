@@ -13,7 +13,6 @@ type Agendamento = {
   numero: string;
   referencia: string;
   data: string;          // data da limpeza
-  data_criacao: string;  // data do agendamento
 };
 
 function formatarData(dataStr?: string, withTime = false) {
@@ -71,7 +70,6 @@ export default function Agendamentos() {
               <p><strong>Endereço:</strong> {ag.endereco}, Nº {ag.numero}</p>
               <p><strong>Referência:</strong> {ag.referencia}</p>
               <p><strong>Data da Limpeza:</strong> {formatarData(ag.data)}</p>
-              <p><strong>Data do Agendamento:</strong> {formatarData(ag.data_criacao, true)}</p>
             </li>
           ))}
         </ul>

@@ -53,8 +53,8 @@ app.post("/agendamento", async (req, res) => {
   try {
     const result = await pool.query(
       `INSERT INTO agendamentos 
-        (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+        (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
        RETURNING *`,
       [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data]
     );
