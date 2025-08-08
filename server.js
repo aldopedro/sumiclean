@@ -42,10 +42,11 @@ app.post("/agendamento", async (req, res) => {
     nome,
     endereco,
     numero,
-    referencia
+    referencia,
+    data,
   } = req.body;
 
-  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia) {
+  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia || !data) {
     return res.status(400).json({ error: "Todos os campos são obrigatórios." });
   }
 
@@ -55,7 +56,7 @@ app.post("/agendamento", async (req, res) => {
         (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
        RETURNING *`,
-      [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia]
+      [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data]
     );
 
     res.status(201).json(result.rows[0]);

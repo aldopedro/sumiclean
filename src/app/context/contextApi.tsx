@@ -8,6 +8,7 @@ type DadosAgendamento = {
   quartos: number;
   nome?: string;
   endereco?: string;
+  data?: string;
 };
 
 type AgendamentoContextType = {
@@ -23,6 +24,7 @@ export function AgendamentoProvider({ children }: { children: React.ReactNode })
     tipo: null,
     banheiros: 1,
     quartos: 1,
+    data: "",
   });
 
   return (

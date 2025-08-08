@@ -12,9 +12,19 @@ type Agendamento = {
   endereco: string;
   numero: string;
   referencia: string;
-  data: string;          // nova
-  data_criacao: string;
+  data: string;          // data da limpeza
+  data_criacao: string;  // data do agendamento
 };
+
+function formatarData(dataStr?: string, withTime = false) {
+  if (!dataStr) return "Data não informada";
+  const isoStr = dataStr.replace(" ", "T");
+  const d = new Date(isoStr);
+  if (isNaN(d.getTime())) return "Data inválida";
+  return withTime 
+    ? d.toLocaleString("pt-BR") 
+    : d.toLocaleDateString("pt-BR");
+}
 
 export default function Agendamentos() {
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
@@ -60,8 +70,8 @@ export default function Agendamentos() {
               <p><strong>Nome:</strong> {ag.nome}</p>
               <p><strong>Endereço:</strong> {ag.endereco}, Nº {ag.numero}</p>
               <p><strong>Referência:</strong> {ag.referencia}</p>
-              <p><strong>Data da Limpeza:</strong> {new Date(ag.data).toLocaleDateString('pt-BR')}</p>
-              <p><strong>Data do Agendamento:</strong> {new Date(ag.data_criacao).toLocaleString('pt-BR')}</p>
+              <p><strong>Data da Limpeza:</strong> {formatarData(ag.data)}</p>
+              <p><strong>Data do Agendamento:</strong> {formatarData(ag.data_criacao, true)}</p>
             </li>
           ))}
         </ul>
