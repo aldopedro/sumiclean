@@ -1,9 +1,7 @@
 .background {
   background-image: url("/agradecimento.png");
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  z-index: -1;
+  width: 420px;
+  height: 600px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -12,4 +10,13 @@
   justify-content: center;
   align-items: center;
   color: #003e57;
+}
+.main {
+  min-height: 100vh;
+  background: #fff9c7;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
 }
