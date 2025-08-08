@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import styles from './pesada.module.css';
+import styles from './leve.module.css';
 import { useAgendamento } from "../../context/contextApi";
 
 const tipos = ["Studio", "Apartamento", "Casa"];
