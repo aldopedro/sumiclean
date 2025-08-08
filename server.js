@@ -1,62 +1,62 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import { Pool } from 'pg';
+// server.js
+import express from "express";
+import cors from "cors";
+import pkg from "pg";
+import dotenv from "dotenv";
 
 dotenv.config();
 
+const { Pool } = pkg;
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
 const app = express();
-const PORT = 3001;
+
 const corsOptions = {
   origin: 'https://sumiclean.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
 };
-
 app.use(cors(corsOptions));
-app.use(cors());
-app.use(bodyParser.json());
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+app.use(express.json());
 
-// POST para criar agendamento
-app.post('/api/agendamento', async (req, res) => {
-  const { service, location, date, hour, address } = req.body;
+app.post("/agendamento", async (req, res) => {
+  const {
+    limpeza,
+    tipo,
+    banheiros,
+    quartos,
+    nome,
+    endereco,
+    numero,
+    referencia
+  } = req.body;
 
-  if (!service || !location || !date || !hour || !address) {
-    return res.status(400).json({ error: 'Todos os campos são obrigatórios.' });
+  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia) {
+    return res.status(400).json({ error: "Todos os campos são obrigatórios." });
   }
 
   try {
-    await pool.query(
-      'INSERT INTO agendamentos (service, location, date, hour, address) VALUES ($1, $2, $3, $4, $5)',
-      [service, location, date, hour, address]
+    const result = await pool.query(
+      `INSERT INTO agendamentos 
+        (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
+       RETURNING *`,
+      [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia]
     );
-    return res.status(200).json({ message: 'Agendamento recebido com sucesso!' });
+
+    res.status(201).json(result.rows[0]);
   } catch (error) {
-    console.error('Erro ao salvar agendamento:', error);
-    return res.status(500).json({ error: 'Erro ao salvar agendamento.' });
+    console.error("Erro ao criar agendamento:", error);
+    res.status(500).json({ error: "Erro ao criar agendamento" });
   }
 });
 
-// GET para consultar agendamentos
-app.get('/getAgendamento', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM agendamentos ORDER BY id DESC');
-    return res.status(200).json(result.rows);
-  } catch (error) {
-    console.error('Erro ao buscar agendamentos:', error);
-    return res.status(500).json({ error: 'Erro ao buscar agendamentos.' });
-  }
-});
-
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}
-`);
+  console.log(`Servidor rodando na porta ${PORT}`);
 });

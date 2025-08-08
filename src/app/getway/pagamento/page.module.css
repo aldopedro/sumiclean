@@ -1,0 +1,165 @@
+.main {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #cafdfe 0%, #e3f0f4 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(3, 63, 92, 0.08);
+  padding: 40px 32px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #033f5c;
+  margin-bottom: 32px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.buttonsGroup {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  width: 100%;
+  justify-content: center;
+}
+
+.paymentButton {
+  flex: 1;
+  padding: 12px 0;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #019d9c;
+  background-color: #f3fafd;
+  color: #019d9c;
+  transition: all 0.3s ease;
+}
+
+.paymentButton:hover {
+  background-color: #019d9c;
+  color: #fff;
+}
+
+.selected {
+  background-color: #019d9c;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(1, 157, 156, 0.3);
+}
+
+.paymentDetails {
+  width: 100%;
+  max-width: 380px;
+}
+
+.cartaoForm label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #127e7b;
+  font-size: 1rem;
+}
+
+.cartaoForm input {
+  margin-top: 6px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 14px;
+  border: 1px solid #127e7b;
+  outline-offset: 2px;
+  transition: border-color 0.2s;
+}
+
+.cartaoForm input:focus {
+  border-color: #019d9c;
+  box-shadow: 0 0 6px #019d9caa;
+}
+
+.pixContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  color: #127e7b;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.qrCode {
+  width: 180px;
+  height: 180px;
+  border-radius: 24px;
+  box-shadow: 0 4px 16px rgba(3, 63, 92, 0.08);
+}
+
+.dinheiroText {
+  color: #127e7b;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.selectText {
+  color: #555;
+  font-size: 1rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.finalizarButton {
+  margin-top: 24px;
+  width: 100%;
+  padding: 14px 0;
+  background-color: #019d9c;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.finalizarButton:disabled {
+  background-color: #8bd1d1;
+  cursor: not-allowed;
+}
+
+.finalizarButton:not(:disabled):hover {
+  background-color: #017c7b;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 24px 16px;
+    max-width: 98vw;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .paymentButton {
+    font-size: 1rem;
+  }
+
+  .paymentDetails {
+    max-width: 100%;
+  }
+}

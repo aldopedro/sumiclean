@@ -1,0 +1,154 @@
+.main {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #cafdfe 0%, #e3f0f4 100%);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.background {
+    background-image: url('/limpezapesada.png');
+    width: 400px;
+    height: 600px;
+    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(3, 63, 92, .08);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(3, 63, 92, 0.08);
+  padding: 40px 32px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #033f5c;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #127e7b;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.typeButtons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.typeButton {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.checkboxInput {
+  display: none;
+}
+
+.typeButton span {
+  display: block;
+  padding: 12px 28px;
+  border-radius: 10px;
+  background: #f3fafd;
+  color: #033f5c;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(3, 63, 92, 0.04);
+}
+
+.typeButton input:checked + span {
+  background: #019d9c;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(1, 157, 156, 0.10);
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.counterButton {
+  background: #f3fafd;
+  color: #019d9c;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(3, 63, 92, 0.04);
+}
+
+.counterButton:hover {
+  background: #019d9c;
+  color: #fff;
+}
+
+.counterLabel {
+  font-size: 1.1rem;
+  color: #033f5c;
+  min-width: 120px;
+  text-align: center;
+}
+
+.infoText {
+  font-size: 1rem;
+  color: #127e7b;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.buttonSubmit {
+  background-color: #019d9c;
+  color: white;
+  border-radius: 14px;
+  font-size: 20px;
+  border: 1px solid #127e7b;
+  width: 100%;
+  padding: 8px 0;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 24px 8px;
+    max-width: 98vw;
+  }
+  .typeButton span {
+    padding: 10px 10px;
+    font-size: 0.95rem;
+  }
+  .counterLabel {
+    min-width: 80px;
+    font-size: 1rem;
+  }
+}
