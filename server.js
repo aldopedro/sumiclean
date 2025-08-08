@@ -24,6 +24,15 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.get("/getAgendamentos", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM agendamentos ORDER BY data DESC");
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Erro ao buscar agendamentos:", error);
+    res.status(500).json({ error: "Erro ao buscar agendamentos" });
+  }
+});
 app.post("/agendamento", async (req, res) => {
   const {
     limpeza,

@@ -13,6 +13,7 @@ export default function CadastroEndereco() {
     const [endereco, setEndereco] = useState("");
     const [numero, setNumero] = useState("");
     const [referencia, setReferencia] = useState("");
+    const [data, setData] = useState("");
     const [loading, setLoading] = useState(false);
 
     async function handleSubmitFinal() {
@@ -27,6 +28,7 @@ export default function CadastroEndereco() {
             endereco,
             numero,
             referencia,
+            data,
         };
 
         try {
@@ -40,8 +42,6 @@ export default function CadastroEndereco() {
             });
 
             if (!response.ok) throw new Error("Erro ao agendar.");
-
-            alert("Agendamento feito com sucesso!");
             router.push("/getway/pagamento");
         } catch (error) {
             console.error(error);
@@ -93,6 +93,15 @@ export default function CadastroEndereco() {
                         type="text"
                         value={referencia}
                         onChange={(e) => setReferencia(e.target.value)}
+                        className={styles.input}
+                    />
+                </div>
+                <div className={styles.field}>
+                    <label className={styles.label}>Data que deseja: </label>
+                    <input
+                        type="date"
+                        value={data}
+                        onChange={(e) => setData(e.target.value)}
                         className={styles.input}
                     />
                 </div>

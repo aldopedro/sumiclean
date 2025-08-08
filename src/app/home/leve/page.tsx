@@ -83,7 +83,7 @@ export default function Leve() {
                     <label className={styles.switch}>
                         <input type="checkbox" />
                         <span className={styles.slider}></span>
-                        <span className={styles.switchText}>Possui vidros</span>
+                        <span className={styles.switchText}>Possui vidraças ou varanda</span>
                     </label>
 
                     <label className={styles.switch}>

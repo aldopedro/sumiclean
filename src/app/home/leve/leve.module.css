@@ -5,6 +5,9 @@
   justify-content: space-around;
   align-items: center;
   font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 0 16px; /* Evita colar nas bordas em telas pequenas */
+  gap: 32px; /* Espaçamento entre background e container */
+  flex-wrap: wrap; /* Permite quebrar linha se não couber */
 }
 
 .background {
@@ -15,7 +18,8 @@
   background-size: cover;
   background-position: center;
   border-radius: 24px;
-  box-shadow: 0 4px 24px rgba(3, 63, 92, .08);
+  box-shadow: 0 4px 24px rgba(3, 63, 92, 0.08);
+  flex-shrink: 0; /* Não deixa encolher demais */
 }
 
 .container {
@@ -79,7 +83,7 @@
   box-shadow: 0 2px 8px rgba(3, 63, 92, 0.04);
 }
 
-.typeButton input:checked+span {
+.typeButton input:checked + span {
   background: #019d9c;
   color: #fff;
   box-shadow: 0 4px 16px rgba(1, 157, 156, 0.10);
@@ -192,6 +196,7 @@
 .switchText {
   font-size: 14px;
 }
+
 .inputText {
   width: 100%;
   padding: 12px;
@@ -200,20 +205,42 @@
   border-radius: 8px;
   font-size: 14px;
 }
+
 .inputText:focus {
   outline: none;
   border-color: #019d9c;
 }
 
-@media (max-width: 600px) {
+/* Responsividade */
+
+@media (max-width: 400px) {
+    .typeButtons {
+        align-items: initial;
+        flex-wrap: wrap;
+    }
+  .main {
+    flex-direction: column;
+    gap: 32px;
+    padding-bottom: 64px;
+  }
+
+  .background {
+    width: 90vw;
+    max-width: 320px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+  }
+
   .container {
-    padding: 24px 8px;
+    padding: 24px 16px;
     max-width: 98vw;
+    width: 100%;
   }
 
   .typeButton span {
-    padding: 10px 10px;
+    padding: 10px 12px;
     font-size: 0.95rem;
+    min-width: 112px;
   }
 
   .counterLabel {
