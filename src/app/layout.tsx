@@ -22,7 +22,7 @@ import { AgendamentoProvider } from "../../src/app/context/contextApi";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AgendamentoProvider>
           {children}
         </AgendamentoProvider>

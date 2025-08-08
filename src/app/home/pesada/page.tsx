@@ -7,29 +7,34 @@ import { useAgendamento } from "../../context/contextApi";
 const tipos = ["Studio", "Apartamento", "Casa"];
 
 export default function Leve() {
-   const router = useRouter()
+    const router = useRouter()
     const [banheiros, setBanheiros] = useState(1);
     const [quartos, setQuartos] = useState(1);
     const [tipoSelecionado, setTipoSelecionado] = useState<number | null>(null);
-const { dados, setDados } = useAgendamento();
-function handleSubmit() {
-  if (tipoSelecionado === null) return alert("Selecione o tipo");
+    const { dados, setDados } = useAgendamento();
 
-  setDados(prev => ({
-    ...prev,
-    limpeza: "Pesada",
-    tipo: tipos[tipoSelecionado],
-    banheiros,
-    quartos,
-  }));
-  router.push("/getway");
-}
+    function handleSubmit() {
+        if (tipoSelecionado === null) return alert("Selecione o tipo");
+
+        setDados(prev => ({
+            ...prev,
+            limpeza: "Pesada",
+            tipo: tipos[tipoSelecionado],
+            banheiros,
+            quartos,
+        }));
+        console.log(dados);
+        router.push("/getway");
+    }
+
     return (
         <div className={styles.main}>
             <div className={styles.background}></div>
             <div className={styles.container}>
                 <h3 className={styles.title}>COMO É SEU LAR?</h3>
                 <span className={styles.subtitle}>clique no tipo de lar e quantidade de cômodos!</span>
+
+                {/* Tipos */}
                 <div className={styles.typeButtons}>
                     {tipos.map((tipo, idx) => (
                         <label key={tipo} className={styles.typeButton}>
@@ -43,6 +48,8 @@ function handleSubmit() {
                         </label>
                     ))}
                 </div>
+
+                {/* Contador Banheiros */}
                 <div className={styles.counter}>
                     <button
                         className={styles.counterButton}
@@ -54,6 +61,8 @@ function handleSubmit() {
                         onClick={() => setBanheiros(b => b + 1)}
                     > + </button>
                 </div>
+
+                {/* Contador Quartos */}
                 <div className={styles.counter}>
                     <button
                         className={styles.counterButton}
@@ -65,9 +74,26 @@ function handleSubmit() {
                         onClick={() => setQuartos(q => q + 1)}
                     > + </button>
                 </div>
-                <span className={styles.infoText} >cozinha e sala já estão inclusos</span>
-                <span className={styles.infoText}><br/>para lavabo adicione banheiros e para demais cômodos adicione mais quartos</span>
-                <button className={styles.buttonSubmit} onClick={() => handleSubmit()}>Proximo</button>
+                <input
+                    type="text"
+                    placeholder="Qual material do seu piso?"
+                    className={styles.inputText}
+                />
+                <div className={styles.extraOptions}>
+                    <label className={styles.switch}>
+                        <input type="checkbox" />
+                        <span className={styles.slider}></span>
+                        <span className={styles.switchText}>Possui vidros</span>
+                    </label>
+
+                    <label className={styles.switch}>
+                        <input type="checkbox" />
+                        <span className={styles.slider}></span>
+                        <span className={styles.switchText}>Possui móveis de madeira</span>
+                    </label>
+                </div>
+
+                <button className={styles.buttonSubmit} onClick={handleSubmit}>Próximo</button>
             </div>
         </div>
     )

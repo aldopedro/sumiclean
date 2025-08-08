@@ -8,10 +8,10 @@
 }
 
 .background {
-    background-image: url('/limpezapesada.png');
-    width: 400px;
-    height: 600px;
-    background-repeat: no-repeat;
+  background-image: url('/limpezapesada.png');
+  width: 400px;
+  height: 600px;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   border-radius: 24px;
@@ -79,7 +79,7 @@
   box-shadow: 0 2px 8px rgba(3, 63, 92, 0.04);
 }
 
-.typeButton input:checked + span {
+.typeButton input:checked+span {
   background: #019d9c;
   color: #fff;
   box-shadow: 0 4px 16px rgba(1, 157, 156, 0.10);
@@ -138,15 +138,84 @@
   margin-top: 16px;
 }
 
+.extraOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  display: none;
+}
+
+/* Faixa do switch */
+.slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+/* Bolinha dentro */
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+/* Quando marcado, muda cor e desliza */
+.switch input:checked + .slider {
+  background-color: #019d9c;
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+.switchText {
+  font-size: 14px;
+}
+.inputText {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.inputText:focus {
+  outline: none;
+  border-color: #019d9c;
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 24px 8px;
     max-width: 98vw;
   }
+
   .typeButton span {
     padding: 10px 10px;
     font-size: 0.95rem;
   }
+
   .counterLabel {
     min-width: 80px;
     font-size: 1rem;

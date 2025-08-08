@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './page.module.css';
+import Image from 'next/image';
 
 export default function Pagamento() {
     const router = useRouter();
@@ -60,7 +61,7 @@ export default function Pagamento() {
 
           {pagamentoSelecionado === 'pix' && (
             <div className={styles.pixContainer}>
-              <img src="/qrcode.png" alt="QR Code Pix" className={styles.qrCode} />
+              <Image src="/qrcode.png" alt="QR Code Pix" className={styles.qrCode} />
               <p>Escaneie o QR Code para pagar via Pix</p>
             </div>
           )}
