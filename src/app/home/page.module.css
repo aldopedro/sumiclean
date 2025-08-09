@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     background-color: #cafdfe;
-    height: 100vh;
+    min-height: 100vh;;
     padding: 0 10px;
     color: #033f5c;
 }
@@ -55,8 +55,3 @@
     background-color: #127e7b;
     transition: .2s ease-in-out;
 }
-@media screen and (max-width: 768px) {
-    .main {
-        height: auto;
-    }
-  }

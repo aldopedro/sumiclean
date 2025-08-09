@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 24px;
+  background-color: white;
 }
 
 .container {
@@ -83,6 +84,7 @@
   border: 1px solid #127e7b;
   outline-offset: 2px;
   transition: border-color 0.2s;
+  background-color: white;
 }
 
 .cartaoForm input:focus {
