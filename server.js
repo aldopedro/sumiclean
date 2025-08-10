@@ -26,7 +26,10 @@ app.use(express.json());
 
 app.get("/getAgendamentos", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM agendamentos ORDER BY data CRESC");
+    const result = await pool.query(
+  "SELECT * FROM agendamentos ORDER BY data ASC, hora ASC"
+);
+
     res.json(result.rows);
   } catch (error) {
     console.error("Erro ao buscar agendamentos:", error);
