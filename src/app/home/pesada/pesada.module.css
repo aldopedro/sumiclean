@@ -10,7 +10,7 @@
   flex-wrap: wrap; /* Permite quebrar linha se não couber */
 }
 
-.background {
+.backgroundPage {
   background-image: url('/limpezapesada.png');
   width: 400px;
   height: 600px;
@@ -262,7 +262,7 @@
   transform: translateX(-2px);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 620px) {
     .typeButtons {
         flex-direction: column;
         align-items: initial;
@@ -271,9 +271,10 @@
     flex-direction: column;
     gap: 32px;
     padding-bottom: 64px;
+    padding-top: 120px;
   }
 
-  .background {
+  .backgroundPage {
     width: 90vw;
     max-width: 320px;
     height: auto;

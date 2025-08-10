@@ -31,6 +31,7 @@ export default function Leve() {
     }
     return (
         <div className={styles.main}>
+            <div className={styles.background}></div>
       <div className={styles.backContainer}>
         <button
           onClick={handleBackClick}
@@ -54,7 +55,7 @@ export default function Leve() {
           </svg>
         </button>
       </div>
-            <div className={styles.background}></div>
+            <div className={styles.backgroundPage}></div>
             <div className={styles.container}>
                 <h3 className={styles.title}>COMO É SEU LAR?</h3>
                 <span className={styles.subtitle}>clique no tipo de lar e quantidade de cômodos!</span>
