@@ -29,6 +29,7 @@
   font-size: 32px;
   margin-top: 12px;
   cursor: pointer;
+  position: relative
 
 }
 
@@ -39,8 +40,8 @@
 .backContainer {
   z-index: 10;
   position: absolute;
-  top: 278px;
-  left: 1080px;
+  top: 37px;
+  left: 240px;
   transform: rotate(180deg);
   background: transparent;
 }
