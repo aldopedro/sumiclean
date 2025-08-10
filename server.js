@@ -50,7 +50,9 @@ app.post("/agendamento", async (req, res) => {
     hora,
   } = req.body;
 
-  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia || !data || !hora) {
+  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia || !data || !hora
+
+  ) {
     return res.status(400).json({ error: "Todos os campos são obrigatórios." });
   }
 
@@ -58,7 +60,7 @@ app.post("/agendamento", async (req, res) => {
     const result = await pool.query(
       `INSERT INTO agendamentos 
         (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data, hora) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 10$) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) 
        RETURNING *`,
       [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data, hora]
     );
