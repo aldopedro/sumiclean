@@ -50,7 +50,7 @@ app.post("/agendamento", async (req, res) => {
     hora,
   } = req.body;
 
-  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia || !data) {
+  if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia || !data || !hora) {
     return res.status(400).json({ error: "Todos os campos são obrigatórios." });
   }
 
