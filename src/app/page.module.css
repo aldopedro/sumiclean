@@ -36,3 +36,52 @@
   transition: ease-in-out .2s;
   opacity: 70%;
 }
+.backContainer {
+  z-index: 10;
+  position: absolute;
+  top: 278px;
+  left: 1080px;
+  transform: rotate(180deg);
+  background: transparent;
+}
+
+
+.backButton {
+ cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 14px;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  transition: all .2s ease-in-out;
+  display: flex;
+}
+
+.backButton:hover {
+  background-color: #e3f0f4;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(3, 63, 92, 0.15);
+}
+
+.backButton:active {
+  transform: translateX(-2px) scale(0.95);
+}
+
+.backButton:focus {
+  outline: 2px solid #033f5c;
+  outline-offset: 2px;
+}
+
+
+.backArrow {
+  width: 28px;
+  height: 28px;
+  color: #033f5c;
+  transition: transform 0.2s ease-in-out;
+}
+
+.backButton:hover .backArrow {
+  transform: translateX(-2px);
+}

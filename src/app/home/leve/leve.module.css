@@ -212,6 +212,54 @@
   border-color: #019d9c;
 }
 
+.backContainer {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 10;
+}
+
+
+.backButton {
+  background-color: white;
+  border: 1px solid #e3f0f4;
+  border-radius: 14px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 8px rgba(3, 63, 92, 0.1);
+}
+
+.backButton:hover {
+  background-color: #e3f0f4;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(3, 63, 92, 0.15);
+}
+
+.backButton:active {
+  transform: translateX(-2px) scale(0.95);
+}
+
+.backButton:focus {
+  outline: 2px solid #033f5c;
+  outline-offset: 2px;
+}
+
+
+.backArrow {
+  width: 28px;
+  height: 28px;
+  color: #033f5c;
+  transition: transform 0.2s ease-in-out;
+}
+
+.backButton:hover .backArrow {
+  transform: translateX(-2px);
+}
 /* Responsividade */
 
 @media (max-width: 400px) {

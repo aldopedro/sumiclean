@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.get("/getAgendamentos", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM agendamentos ORDER BY data DESC");
+    const result = await pool.query("SELECT * FROM agendamentos ORDER BY data CRESC");
     res.json(result.rows);
   } catch (error) {
     console.error("Erro ao buscar agendamentos:", error);
@@ -44,6 +44,7 @@ app.post("/agendamento", async (req, res) => {
     numero,
     referencia,
     data,
+    hora,
   } = req.body;
 
   if (!limpeza || !tipo || !banheiros || !quartos || !nome || !endereco || !numero || !referencia || !data) {
@@ -53,10 +54,10 @@ app.post("/agendamento", async (req, res) => {
   try {
     const result = await pool.query(
       `INSERT INTO agendamentos 
-        (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data) 
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+        (limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data, hora) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, 10$) 
        RETURNING *`,
-      [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data]
+      [limpeza, tipo, banheiros, quartos, nome, endereco, numero, referencia, data, hora]
     );
 
     res.status(201).json(result.rows[0]);

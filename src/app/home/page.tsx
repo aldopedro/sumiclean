@@ -24,9 +24,35 @@ const Home: React.FC = () => {
       alert("Selecione uma opção!");
     }
   }
-
+  function handleBackClick() {
+    window.location.href = "/login";
+  }
   return (
     <div className={styles.main}>
+      <div className={styles.background}></div>
+      <div className={styles.backContainer}>
+        <button
+          onClick={handleBackClick}
+          className={styles.backButton}
+          type="button"
+          aria-label="Voltar"
+        >
+          <svg
+            className={styles.backArrow}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12H5M12 19L5 12L12 5"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
       <div className={styles.container}>
         <h1>Qual serviço você deseja?</h1>
         <div>

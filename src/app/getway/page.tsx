@@ -14,6 +14,7 @@ export default function CadastroEndereco() {
     const [numero, setNumero] = useState("");
     const [referencia, setReferencia] = useState("");
     const [data, setData] = useState("");
+    const [hora, setHora] = useState("");
     const [loading, setLoading] = useState(false);
 
     async function handleSubmitFinal() {
@@ -29,6 +30,7 @@ export default function CadastroEndereco() {
             numero,
             referencia,
             data,
+            hora,
         };
 
         try {
@@ -50,10 +52,35 @@ export default function CadastroEndereco() {
             setLoading(false);
         }
     }
-
+    function handleBackClick() {
+        window.location.href = "/home";
+    }
     return (
         <div className={styles.main}>
-
+            <div className={styles.background}></div>
+      <div className={styles.backContainer}>
+        <button
+          onClick={handleBackClick}
+          className={styles.backButton}
+          type="button"
+          aria-label="Voltar"
+        >
+          <svg
+            className={styles.backArrow}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12H5M12 19L5 12L12 5"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
             <div className={styles.container}>
                 <h2 className={styles.title}>Informações de contato</h2>
 
@@ -102,6 +129,15 @@ export default function CadastroEndereco() {
                         type="date"
                         value={data}
                         onChange={(e) => setData(e.target.value)}
+                        className={styles.input}
+                    />
+                </div>
+                <div className={styles.field}>
+                    <label className={styles.label}>Hora que deseja: </label>
+                    <input
+                        type="time"
+                        value={hora}
+                        onChange={(e) => setHora(e.target.value)}
                         className={styles.input}
                     />
                 </div>
