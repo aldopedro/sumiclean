@@ -12,8 +12,9 @@ type Agendamento = {
   endereco: string;
   numero: string;
   referencia: string;
-  data: string;
-  hora: string;          // data da limpeza
+  data: string;   // data da limpeza
+  hora: string;   // hora da limpeza
+  valor: number;
 };
 
 function formatarData(dataStr?: string, withTime = false) {
@@ -34,16 +35,25 @@ export default function Agendamentos() {
   useEffect(() => {
     async function fetchAgendamentos() {
       try {
-        const res = await fetch('https://sumiclean-q7p6.onrender.com/getAgendamentos');
+        const token = localStorage.getItem("token");
+        if (!token) throw new Error("Usuário não autenticado");
+
+        const res = await fetch('https://sumiclean-q7p6.onrender.com/agendamento', {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
         if (!res.ok) throw new Error('Erro ao carregar agendamentos');
-        const data = await res.json();
+        const data: Agendamento[] = await res.json();
+
+        data.sort((a, b) => {
+          const dateA = new Date(`${a.data}T${a.hora}`);
+          const dateB = new Date(`${b.data}T${b.hora}`);
+          return dateA.getTime() - dateB.getTime();
+        });
+
         setAgendamentos(data);
       } catch (e: unknown) {
-        if (e instanceof Error) {
-          setError(e.message);
-        } else {
-          setError(String(e));
-        }
+        if (e instanceof Error) setError(e.message);
+        else setError(String(e));
       } finally {
         setLoading(false);
       }
@@ -71,7 +81,8 @@ export default function Agendamentos() {
               <p><strong>Endereço:</strong> {ag.endereco}, Nº {ag.numero}</p>
               <p><strong>Referência:</strong> {ag.referencia}</p>
               <p><strong>Data da Limpeza:</strong> {formatarData(ag.data)}</p>
-              <p><strong>Hora da Limpeza: :</strong> {ag.hora}</p>
+              <p><strong>Hora da Limpeza:</strong> {ag.hora}</p>
+              <p><strong>Valor:</strong> R$ {ag.valor.toFixed(2)}</p>
             </li>
           ))}
         </ul>
