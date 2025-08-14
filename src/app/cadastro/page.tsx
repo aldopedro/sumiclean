@@ -13,10 +13,11 @@ export default function Cadastro() {
     const [endereco, setEndereco] = useState("");
     const [numero, setNumero] = useState("");
     const [referencia, setReferencia] = useState("");
+    const [telefone, setTelefone] = useState("");
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit() {
-        if (!nome || !email || !senha || !endereco || !numero) {
+        if (!nome || !email || !senha || !endereco || !numero || !telefone) {
             alert("Por favor, preencha todos os campos obrigatórios.");
             return;
         }
@@ -117,6 +118,15 @@ export default function Cadastro() {
                         type="text"
                         value={endereco}
                         onChange={(e) => setEndereco(e.target.value)}
+                        className={styles.input}
+                    />
+                </div>
+                <div className={styles.field}>
+                    <label className={styles.label}>Telefone: </label>
+                    <input
+                        type="text"
+                        value={telefone}
+                        onChange={(e) => setTelefone(e.target.value)}
                         className={styles.input}
                     />
                 </div>

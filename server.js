@@ -40,8 +40,8 @@ function autenticarToken(req, res, next) {
 
 app.post("/cadastro", async (req, res) => {
   try {
-    const { nome, email, senha, endereco, numero, referencia } = req.body;
-    if (!nome || !email || !senha || !endereco || !numero) {
+    const { nome, email, senha, endereco, numero, referencia, telefone } = req.body;
+    if (!nome || !email || !senha || !endereco || !numero || !telefone ) {
       return res.status(400).json({ error: "Preencha todos os campos obrigatórios" });
     }
 
@@ -52,8 +52,8 @@ app.post("/cadastro", async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(senha, 10);
     const result = await pool.query(
-      "INSERT INTO clientes (nome, email, senha, endereco, numero, referencia) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, nome, email",
-      [nome, email, hashedPassword, endereco, numero, referencia]
+      "INSERT INTO clientes (nome, email, senha, endereco, numero, referencia, telefone) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id, nome, email",
+      [nome, email, hashedPassword, endereco, numero, referencia, telefone]
     );
 
     const cliente = result.rows[0];
@@ -139,7 +139,8 @@ app.get("/getAgendamentos", async (req, res) => {
              c.nome, 
              c.endereco, 
              c.referencia,
-             c.numero
+             c.numero,
+             c.telefone
       FROM agendamentos a
       JOIN clientes c ON a.cliente_id = c.id
       ORDER BY a.data ASC, a.hora ASC
