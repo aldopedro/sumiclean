@@ -18,7 +18,7 @@ export default function Limpeza() {
   const [valor, setValor] = useState(0);
   const [animando, setAnimando] = useState(false);
 
-  const precoBase = 20;
+  const precoBase = 50;
   const precoBanheiro = 30;
   const precoQuarto = 50;
   const precoVidracas = 40;

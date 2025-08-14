@@ -19,10 +19,10 @@ export default function Limpeza() {
   const [animando, setAnimando] = useState(false);
 
   const precoBase = 20;
-  const precoBanheiro = 30;
-  const precoQuarto = 50;
-  const precoVidracas = 40;
-  const precoMadeira = 60;
+  const precoBanheiro = 20;
+  const precoQuarto = 30;
+  const precoVidracas = 30;
+  const precoMadeira = 40;
 
   useEffect(() => {
     let total = precoBase;
