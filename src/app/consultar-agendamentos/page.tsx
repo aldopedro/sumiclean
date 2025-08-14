@@ -81,7 +81,7 @@ export default function Agendamentos() {
               <p><strong>Referência:</strong> {ag.referencia}</p>
               <p><strong>Data da Limpeza:</strong> {formatarData(ag.data)}</p>
               <p><strong>Hora da Limpeza:</strong> {ag.hora}</p>
-              <p><strong>Valor:</strong> R$ {ag.valor.toFixed(2)}</p>
+              <p><strong>Valor:</strong> R$ {(Number(ag.valor) || 0).toFixed(2)}</p>
             </li>
           ))}
         </ul>
