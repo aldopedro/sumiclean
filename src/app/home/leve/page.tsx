@@ -51,7 +51,7 @@ export default function Limpeza() {
       valor
     }));
 
-    router.push("/home/getway"); // tela de data/hora
+    router.push("/getway"); // tela de data/hora
   }
 
   function handleBackClick() {
