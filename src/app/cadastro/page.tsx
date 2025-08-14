@@ -28,7 +28,7 @@ export default function Cadastro() {
             const response = await fetch("https://sumiclean-q7p6.onrender.com/cadastro", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nome, email, senha, endereco, numero, referencia })
+                body: JSON.stringify({ nome, email, senha, endereco, numero, referencia, telefone })
             });
 
             if (!response.ok) throw new Error("Erro ao cadastrar.");
@@ -113,20 +113,20 @@ export default function Cadastro() {
                 </div>
 
                 <div className={styles.field}>
-                    <label className={styles.label}>Endereço (rua):</label>
-                    <input
-                        type="text"
-                        value={endereco}
-                        onChange={(e) => setEndereco(e.target.value)}
-                        className={styles.input}
-                    />
-                </div>
-                <div className={styles.field}>
                     <label className={styles.label}>Telefone: </label>
                     <input
                         type="text"
                         value={telefone}
                         onChange={(e) => setTelefone(e.target.value)}
+                        className={styles.input}
+                    />
+                </div>
+                <div className={styles.field}>
+                    <label className={styles.label}>Endereço (rua):</label>
+                    <input
+                        type="text"
+                        value={endereco}
+                        onChange={(e) => setEndereco(e.target.value)}
                         className={styles.input}
                     />
                 </div>
