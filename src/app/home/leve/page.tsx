@@ -51,7 +51,7 @@ export default function Limpeza() {
       valor
     }));
 
-    router.push("/cadastro-endereco"); // tela de data/hora
+    router.push("/home/getway"); // tela de data/hora
   }
 
   function handleBackClick() {
@@ -67,7 +67,7 @@ export default function Limpeza() {
           </svg>
         </button>
       </div>
-
+    <div className={styles.backgroundPage}></div>
       <div className={styles.container}>
         <div className={`${styles.valorContainer} ${animando ? styles.animando : ""}`}>
           <strong>Valor:</strong> R$ {valor.toFixed(2)}
