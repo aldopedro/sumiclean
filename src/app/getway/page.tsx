@@ -1,7 +1,7 @@
 'use client';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./cadastro.module.css";
+import styles from "./page.module.css";
 import { useAgendamento } from "../context/contextApi";
 
 export default function CadastroDataHora() {
