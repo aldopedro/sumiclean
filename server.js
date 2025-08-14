@@ -132,11 +132,10 @@ app.post("/agendamento", autenticarToken, async (req, res) => {
   }
 });
 
-app.get("/getAgendamentos", autenticarToken, async (req, res) => {
+app.get("/getAgendamentos", async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT * FROM agendamentos WHERE cliente_id = $1 ORDER BY data ASC, hora ASC`,
-      [req.userId]
+      `SELECT * FROM agendamentos ORDER BY data ASC, hora ASC`,
     );
     res.json(result.rows);
   } catch (error) {

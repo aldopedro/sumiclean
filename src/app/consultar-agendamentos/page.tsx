@@ -35,11 +35,10 @@ export default function Agendamentos() {
   useEffect(() => {
     async function fetchAgendamentos() {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) throw new Error("Usuário não autenticado");
-
         const res = await fetch('https://sumiclean-q7p6.onrender.com/agendamento', {
-          headers: { "Authorization": `Bearer ${token}` }
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',}
         });
         if (!res.ok) throw new Error('Erro ao carregar agendamentos');
         const data: Agendamento[] = await res.json();
