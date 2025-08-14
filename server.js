@@ -98,22 +98,18 @@ app.post("/agendamento", autenticarToken, async (req, res) => {
       temVidracas,
       temMadeira,
       valor,
-      nome,
-      endereco,
-      numero,
-      referencia,
       data,
       hora
     } = req.body;
 
-    if (!limpeza || !tipo || !nome || !endereco || !numero || !data || !hora) {
+    if (!limpeza || !tipo || !data || !hora) {
       return res.status(400).json({ error: "Campos obrigatórios ausentes" });
     }
 
     const result = await pool.query(
       `INSERT INTO agendamentos
-      (cliente_id, limpeza, tipo, banheiros, quartos, tem_vidracas, tem_madeira, valor, nome, endereco, numero, referencia, data, hora)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
+      (cliente_id, limpeza, tipo, banheiros, quartos, tem_vidracas, tem_madeira, valor, data, hora)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
       RETURNING *`,
       [
         req.userId,
@@ -124,10 +120,6 @@ app.post("/agendamento", autenticarToken, async (req, res) => {
         temVidracas || false,
         temMadeira || false,
         valor || 0,
-        nome,
-        endereco,
-        numero,
-        referencia || "",
         data,
         hora
       ]
