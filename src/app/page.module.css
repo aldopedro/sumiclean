@@ -86,3 +86,36 @@
 .backButton:hover .backArrow {
   transform: translateX(-2px);
 }
+.buttonConsultar {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  padding: 0.5rem 1rem;
+  background-color: #019d9c;
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(3, 63, 92, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.buttonConsultar:hover {
+  background-color: #017575;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(3, 63, 92, 0.15);
+}
+
+.buttonConsultar:active {
+  transform: translateY(0) scale(0.97);
+}
+
+@media (max-width: 620px) {
+  .buttonConsultar {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
