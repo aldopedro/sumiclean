@@ -35,7 +35,7 @@ export default function Agendamentos() {
   useEffect(() => {
     async function fetchAgendamentos() {
       try {
-        const res = await fetch('https://sumiclean-q7p6.onrender.com/agendamento', {
+        const res = await fetch('https://sumiclean-q7p6.onrender.com/getAgendamentos', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',}
