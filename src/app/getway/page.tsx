@@ -31,7 +31,9 @@ export default function CadastroDataHora() {
       setLoading(true);
       const response = await fetch("https://sumiclean-q7p6.onrender.com/agendamento", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", 
+        "Authorization": `Bearer ${user.token}`,
+        },
         body: JSON.stringify(dadosCompletos)
       });
 
