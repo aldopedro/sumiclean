@@ -138,7 +138,8 @@ app.get("/getAgendamentos", async (req, res) => {
       SELECT a.*, 
              c.nome, 
              c.endereco, 
-             c.referencia
+             c.referencia,
+             c, numero,
       FROM agendamentos a
       JOIN clientes c ON a.cliente_id = c.id
       ORDER BY a.data ASC, a.hora ASC
