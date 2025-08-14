@@ -134,15 +134,28 @@ app.post("/agendamento", autenticarToken, async (req, res) => {
 
 app.get("/getAgendamentos", async (req, res) => {
   try {
-    const result = await pool.query(
-      `SELECT * FROM agendamentos ORDER BY data ASC, hora ASC`,
-    );
-    res.json(result.rows);
+    const result = await pool.query(`
+      SELECT a.*, 
+             c.nome, 
+             c.endereco, 
+             c.referencia
+      FROM agendamentos a
+      JOIN clientes c ON a.cliente_id = c.id
+      ORDER BY a.data ASC, a.hora ASC
+    `);
+
+    const agendamentos = result.rows.map(row => ({
+      ...row,
+      valor: Number(row.valor)
+    }));
+
+    res.json(agendamentos);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao buscar agendamentos" });
   }
 });
+
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
