@@ -15,6 +15,7 @@ type Agendamento = {
   data: string;   // data da limpeza
   hora: string;   // hora da limpeza
   valor: number;
+  telefone: string;
 };
 
 function formatarData(dataStr?: string, withTime = false) {
@@ -82,6 +83,7 @@ export default function Agendamentos() {
               <p><strong>Data da Limpeza:</strong> {formatarData(ag.data)}</p>
               <p><strong>Hora da Limpeza:</strong> {ag.hora}</p>
               <p><strong>Valor:</strong> R$ {(Number(ag.valor) || 0).toFixed(2)}</p>
+              <p><strong>Telefone:</strong> {ag.telefone}</p>
             </li>
           ))}
         </ul>
