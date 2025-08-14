@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
 import pkg from "pg";
-import bcrypt from "bcrypt";
 import dotenv from "dotenv";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -16,85 +17,73 @@ const pool = new Pool({
 const app = express();
 
 const corsOptions = {
-  origin: "https://sumiclean.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true,
+  origin: 'https://sumiclean.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.post("/clientes", async (req, res) => {
-  const { nome, email, senha } = req.body;
-  if (!nome || !email || !senha) return res.status(400).json({ error: "Campos obrigatórios" });
+const JWT_SECRET = process.env.JWT_SECRET || "secreto_superseguro";
 
+app.post("/cadastro", async (req, res) => {
   try {
-    const hashedSenha = await bcrypt.hash(senha, 10);
+    const { nome, email, senha, endereco, numero, referencia } = req.body;
+
+    if (!nome || !email || !senha || !endereco || !numero) {
+      return res.status(400).json({ error: "Preencha todos os campos obrigatórios" });
+    }
+
+    const emailExistente = await pool.query("SELECT * FROM clientes WHERE email = $1", [email]);
+    if (emailExistente.rows.length > 0) {
+      return res.status(400).json({ error: "Email já cadastrado" });
+    }
+
+    const hashedPassword = await bcrypt.hash(senha, 10);
+
     const result = await pool.query(
-      "INSERT INTO clientes (nome, email, senha) VALUES ($1, $2, $3) RETURNING *",
-      [nome, email, hashedSenha]
+      "INSERT INTO clientes (nome, email, senha, endereco, numero, referencia) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id, nome, email",
+      [nome, email, hashedPassword, endereco, numero, referencia]
     );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Erro ao criar cliente" });
+
+    const cliente = result.rows[0];
+    const token = jwt.sign({ id: cliente.id }, JWT_SECRET, { expiresIn: "7d" });
+
+    res.status(201).json({ id: cliente.id, token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao cadastrar cliente" });
   }
 });
 
 app.post("/login", async (req, res) => {
-  const { email, senha } = req.body;
-  if (!email || !senha) return res.status(400).json({ error: "Campos obrigatórios" });
-
   try {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+      return res.status(400).json({ error: "Preencha email e senha" });
+    }
+
     const result = await pool.query("SELECT * FROM clientes WHERE email = $1", [email]);
+    if (result.rows.length === 0) {
+      return res.status(400).json({ error: "Email ou senha inválidos" });
+    }
+
     const cliente = result.rows[0];
-    if (!cliente) return res.status(401).json({ error: "Usuário não encontrado" });
-
     const senhaValida = await bcrypt.compare(senha, cliente.senha);
-    if (!senhaValida) return res.status(401).json({ error: "Senha inválida" });
+    if (!senhaValida) {
+      return res.status(400).json({ error: "Email ou senha inválidos" });
+    }
 
-    res.json({ id: cliente.id, nome: cliente.nome, email: cliente.email });
-  } catch (err) {
-    console.error(err);
+    const token = jwt.sign({ id: cliente.id }, JWT_SECRET, { expiresIn: "7d" });
+    res.json({ id: cliente.id, token });
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: "Erro ao fazer login" });
   }
 });
 
-app.post("/agendamento", async (req, res) => {
-  const { cliente_id, limpeza, tipo, banheiros, quartos, temVidracas, temMadeira, valor, piso } = req.body;
-
-  if (!cliente_id || !limpeza || !tipo) return res.status(400).json({ error: "Campos obrigatórios" });
-
-  try {
-    const result = await pool.query(
-      `INSERT INTO agendamentos
-        (cliente_id, limpeza, tipo, banheiros, quartos, tem_vidracas, tem_madeira, valor, piso)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)
-       RETURNING *`,
-      [cliente_id, limpeza, tipo, banheiros, quartos, temVidracas, temMadeira, valor, piso]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Erro ao criar agendamento" });
-  }
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-app.get("/getAgendamentos/:cliente_id", async (req, res) => {
-  const { cliente_id } = req.params;
-  try {
-    const result = await pool.query(
-      `SELECT * FROM agendamentos
-       WHERE cliente_id = $1
-       ORDER BY data_agendamento ASC, hora_agendamento ASC`,
-      [cliente_id]
-    );
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Erro ao buscar agendamentos" });
-  }
-});
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
